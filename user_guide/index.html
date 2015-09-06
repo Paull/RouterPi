@@ -24,9 +24,10 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li role="presentation" class="active"><a href="#pre" aria-controls="pre" role="tab" data-toggle="tab">前期准备</a></li>
-                            <li role="presentation"><a href="#1st" aria-controls="1st" role="tab" data-toggle="tab">第一步</a></li>
-                            <li role="presentation"><a href="#2nd" aria-controls="2nd" role="tab" data-toggle="tab">第二步</a></li>
-                            <li role="presentation"><a href="#3rd" aria-controls="3rd" role="tab" data-toggle="tab">第三步</a></li>
+                            <li role="presentation"><a href="#1st" aria-controls="1st" role="tab" data-toggle="tab">第一步,修改原无线路由器</a></li>
+                            <li role="presentation"><a href="#2nd" aria-controls="2nd" role="tab" data-toggle="tab">第二步,登录树莓派</a></li>
+                            <li role="presentation"><a href="#3rd" aria-controls="3rd" role="tab" data-toggle="tab">第三步,配置拔号帐号</a></li>
+                            <li role="presentation"><a href="#finish" aria-controls="finish" role="tab" data-toggle="tab">常用指令</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
@@ -43,9 +44,97 @@
                         <li>无线路由器如果LAN口不足，就要另配一个4口HUB</li>
                     </ol>
                 </div>
-                <div role="tabpanel" class="tab-pane jumbotron" id="1st">2...</div>
-                <div role="tabpanel" class="tab-pane jumbotron" id="2nd">3...</div>
-                <div role="tabpanel" class="tab-pane jumbotron" id="3rd">4...</div>
+                <div role="tabpanel" class="tab-pane jumbotron" id="1st">
+                    <h2>第一步，修改原无线路由器</h2>
+                    <ol>
+                        <li>登录路由器管理界面，[DHCP服务器]->[DHCP服务]->[不启用]，并重启</li>
+                        <li>原来插在无线路由器WAN口的网线改插到LAN口</li>
+                        <li>新送的网线，一头连接原无线路由器的LAN口，一头连接新的路由器</li>
+                        <li>打开cmd开始ping新的路由器，指令是：<strong>ping 192.168.1.254 -t</strong></li>
+                        <li>ping通了方可继续下一步，ping不通就要在这步做详细调试</li>
+                    </ol>
+                </div>
+                <div role="tabpanel" class="tab-pane jumbotron" id="2nd">
+                    <h2>第二步，登录树莓派</h2>
+                    <ol>
+                        <li>在电脑上下载<a href="uploads/putty.exe">putty</a>并打开</li>
+                        <li>Host Name一栏输入IP地址：192.168.1.254直接回车或点下面的Open</li>
+                        <li>按提示输入帐号密码</li>
+                        <li>登录成功后进入下一步</li>
+                    </ol>
+                </div>
+                <div role="tabpanel" class="tab-pane jumbotron" id="3rd">
+                    <h2>第三步,配置拔号帐号</h2>
+                    <ol>
+                        <li>
+                            <dt>输入sudo pppoeconf</dt>
+                            <dd><img src="uploads/screenshot01.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>OKAY TO MODIFY这步Yes</dt>
+                            <dd><img src="uploads/screenshot02.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>POPULAR OPTIONS这步Yes</dt>
+                            <dd><img src="uploads/screenshot03.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>ENTER USERNAME这步输入宽带帐号</dt>
+                            <dd><img src="uploads/screenshot04.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>ENTER PASSWORD这步输入宽带密码</dt>
+                            <dd><img src="uploads/screenshot05.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt><h3>USE PEER DNS这步No<span style="color:#f00; font-weight: 700;">(非常重要)</span></h3></dt>
+                            <dd><img src="uploads/screenshot06.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>LIMITED MSS PROBLEM这步Yes</dt>
+                            <dd><img src="uploads/screenshot07.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>DONE，是否开机自动拔号，这步Yes</dt>
+                            <dd><img src="uploads/screenshot08.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>ESTABLISH A CONNECTION，是否现在就拔号，这步Yes</dt>
+                            <dd><img src="uploads/screenshot09.jpg"></dd>
+                        </li>
+                        <li>
+                            <dt>拔号上网到此配置结束</dt>
+                            <dd><img src="uploads/screenshot10.jpg"></dd>
+                        </li>
+                        <li>其实就是输入帐号密码和DNS那步选NO，其它全部是YES</li>
+                    </ol>
+                </div>
+                <div role="tabpanel" class="tab-pane jumbotron" id="finish">
+                    <h2>常用指令</h2>
+                    <ul>
+                        <li>本路由器暂地管理界面，需手工输入指令调试，下面列出一些常用指令</li>
+                        <li>
+                            <dt>ip addr</dt>
+                            <dd>查看本机的IP地址</dd>
+                        </li>
+                        <li>
+                            <dt>sudo pon dsl-provider</dt>
+                            <dd>手工拔号</dd>
+                        </li>
+                        <li>
+                            <dt>sudo poff dsl-provider</dt>
+                            <dd>手工断线</dd>
+                        </li>
+                        <li>
+                            <dt>sudo plog</dt>
+                            <dd>拔号过程中可查看log，拔号结速后失效，拔号过程中可以多次输入查看不同时间点的进度</dd>
+                        </li>
+                        <li>
+                            <dt>iftop_eth0</dt>
+                            <dd>查看局域网所有网络连接及流量</dd>
+                        <li>
+                    </ul>
+                </div>
             </div>
         </div> <!-- /container -->
         <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
