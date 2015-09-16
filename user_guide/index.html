@@ -23,11 +23,11 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li role="presentation" class="active"><a href="#pre" aria-controls="pre" role="tab" data-toggle="tab">前期准备</a></li>
-                            <li role="presentation"><a href="#1st" aria-controls="1st" role="tab" data-toggle="tab">第一步,修改原无线路由器</a></li>
-                            <li role="presentation"><a href="#2nd" aria-controls="2nd" role="tab" data-toggle="tab">第二步,登录树莓派</a></li>
-                            <li role="presentation"><a href="#3rd" aria-controls="3rd" role="tab" data-toggle="tab">第三步,配置拔号帐号</a></li>
-                            <li role="presentation"><a href="#finish" aria-controls="finish" role="tab" data-toggle="tab">常用指令</a></li>
+                            <li role="presentation" class="active"><a href="#pre" aria-controls="pre" role="tab" data-toggle="tab">0.前期准备</a></li>
+                            <li role="presentation"><a href="#1st" aria-controls="1st" role="tab" data-toggle="tab">1.修改原无线路由器</a></li>
+                            <li role="presentation"><a href="#2nd" aria-controls="2nd" role="tab" data-toggle="tab">2.登录树莓派</a></li>
+                            <li role="presentation"><a href="#3rd" aria-controls="3rd" role="tab" data-toggle="tab">3.配置拔号帐号</a></li>
+                            <li role="presentation"><a href="#commands" aria-controls="commands" role="tab" data-toggle="tab">4.常用指令</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
@@ -35,7 +35,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane jumbotron active" id="pre">
-                    <h2>前期准备</h2>
+                    <h2>0.前期准备</h2>
                     <ol>
                         <li>一个刷好特制系统的路由器</li>
                         <li>一套供电设备：手机充电器(电压5V，电流1A－2A)＋数据线(安卓数据线，MicroUSB口)</li>
@@ -45,7 +45,7 @@
                     </ol>
                 </div>
                 <div role="tabpanel" class="tab-pane jumbotron" id="1st">
-                    <h2>第一步，修改原无线路由器</h2>
+                    <h2>1.修改原无线路由器</h2>
                     <ol>
                         <li>登录路由器管理界面，[DHCP服务器]->[DHCP服务]->[不启用]，并重启</li>
                         <li>原来插在无线路由器WAN口的网线改插到LAN口</li>
@@ -55,7 +55,7 @@
                     </ol>
                 </div>
                 <div role="tabpanel" class="tab-pane jumbotron" id="2nd">
-                    <h2>第二步，登录树莓派</h2>
+                    <h2>2.登录树莓派</h2>
                     <ol>
                         <li>在电脑上下载<a href="uploads/putty.exe">putty</a>并打开</li>
                         <li>Host Name一栏输入IP地址：192.168.1.254直接回车或点下面的Open</li>
@@ -64,7 +64,7 @@
                     </ol>
                 </div>
                 <div role="tabpanel" class="tab-pane jumbotron" id="3rd">
-                    <h2>第三步,配置拔号帐号</h2>
+                    <h2>3.配置拔号帐号</h2>
                     <ol>
                         <li>
                             <dt>输入sudo pppoeconf</dt>
@@ -109,8 +109,8 @@
                         <li>其实就是输入帐号密码和DNS那步选NO，其它全部是YES</li>
                     </ol>
                 </div>
-                <div role="tabpanel" class="tab-pane jumbotron" id="finish">
-                    <h2>常用指令</h2>
+                <div role="tabpanel" class="tab-pane jumbotron" id="commands">
+                    <h2>4.常用指令</h2>
                     <ul>
                         <li>本路由器暂地管理界面，需手工输入指令调试，下面列出一些常用指令</li>
                         <li>
